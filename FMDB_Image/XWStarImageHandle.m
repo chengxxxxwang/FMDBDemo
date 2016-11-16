@@ -126,6 +126,23 @@ static FMDatabase *_db;
 
 - (void) removeAllDataInDataBase{
 
+    /**
+     *确定 数据库是否打开
+     */
+    if (![_db open]) {
+        NSLog(@"数据库没有打开");
+    }
+    
+    NSString * newSql = [NSString stringWithFormat:@"DELETE FROM starModel"];
+    
+    BOOL isSuc = [_db executeUpdate:newSql];
+    
+    if (!isSuc) {
+        NSLog(@"delete All failed");
+    }else{
+        
+        NSLog(@"delete All success");
+    }
     
 }
 
